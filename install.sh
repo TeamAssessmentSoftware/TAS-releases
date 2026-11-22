@@ -41,7 +41,7 @@ sums() {
 
 pick() {
   sums
-  grep -E -e "[ *]tas-[0-9.]+-$1\$" "$tmp/SHA256SUMS" | head -n 1 | awk '{print $2}' | tr -d '*'
+  grep -E -e "[ *]tas-[0-9.]+-$1\$" "$tmp/SHA256SUMS" | head -n 1 | sed -E 's/^[0-9a-fA-F]+[ *]+//'
 }
 
 download() {
