@@ -90,10 +90,10 @@ installed() {
   if command -v dpkg-query >/dev/null 2>&1 && [ "$(dpkg-query -W -f '${Status}' "$1" 2>/dev/null || true)" = "install ok installed" ]; then
     return 0
   fi
-  if command -v rpm >/dev/null 2>&1 && rpm -q "$1" >/dev/null 2>&1; then
+  if command -v rpm >/dev/null 2>&1 && [ "$(rpm -q --qf '%{NAME}\n' "$1" 2>/dev/null | head -n 1)" = "$1" ]; then
     return 0
   fi
-  if command -v pacman >/dev/null 2>&1 && pacman -Q "$1" >/dev/null 2>&1; then
+  if command -v pacman >/dev/null 2>&1 && [ "$(pacman -Qq "$1" 2>/dev/null | head -n 1)" = "$1" ]; then
     return 0
   fi
   return 1
@@ -105,7 +105,7 @@ remove_package() {
   say "Removing the $name package"
   if command -v apt-get >/dev/null 2>&1 && command -v dpkg-query >/dev/null 2>&1 && dpkg-query -W "$name" >/dev/null 2>&1; then
     as_root apt-get remove -y "$name"
-  elif command -v pacman >/dev/null 2>&1 && pacman -Q "$name" >/dev/null 2>&1; then
+  elif command -v pacman >/dev/null 2>&1 && [ "$(pacman -Qq "$name" 2>/dev/null | head -n 1)" = "$name" ]; then
     as_root pacman -R --noconfirm "$name"
   elif command -v zypper >/dev/null 2>&1; then
     as_root zypper --non-interactive remove "$name"
