@@ -2,6 +2,8 @@
 
 TAS is a desktop situational-awareness client from Team Assessment Software. It works with ATAK, WinTAK, iTAK, TAK Aware, WebTAK and TAK Server, and has a 3D globe with offline maps. It is free software under the GNU General Public License v3.0 (see `LICENSE`). This repository holds the install scripts and the release files; the source is at https://github.com/TeamAssessmentSoftware/TAS. And yes its directly modeled off of WinTAK.
 
+Please note that no its not perfect, not done, and needs multiple iterations to finish, and due to TAK having many third party icons / assets etc some things of course do not work like the default WinTAK.
+
 ![TAS showing Mount Rainier in 3D with satellite imagery and terrain](images/terrain.jpg)
 
 ![Downtown Seattle with 3D buildings, and the plugin manager open on the right](images/city.jpg)
